@@ -17,8 +17,8 @@ parser.add_argument("end", type=int, help="크롤링을 끝낼 페이지 번호"
 parser.add_argument(
     "-b", "--best", action="store_true", help="이 옵션을 사용하면 개념글에서 페이지를 크롤링합니다."
 )
-parser.add_argument("--file_name", type=str, help="결과물 파일의 이름")
-parser.add_argument("--path", type=str, help="결과물 파일을 저장할 경로")
+parser.add_argument("-n", "--file_name", type=str, help="결과물 파일의 이름")
+parser.add_argument("-p", "--path", type=str, help="결과물 파일을 저장할 경로")
 
 args = parser.parse_args()
 
