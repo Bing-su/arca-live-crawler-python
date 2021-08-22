@@ -44,7 +44,7 @@ else:
 if args.save_path is None:
     if not os.path.isdir("data"):
         os.mkdir("data")
-    save_path = "./data"
+    save_path = ".\\data"
 else:
     save_path = args.save_path
 
@@ -71,5 +71,6 @@ json_data = {
 # 파일 저장
 with open(os.path.join(save_path, file_name), "w", encoding="utf-8") as file:
     json.dump(json_data, file, ensure_ascii=False, indent=4)
+    print(f"파일 저장: {os.path.join(save_path, file_name)}")
 
 print(f"완료, 크롤링한 게시물 수: {total_data}")
