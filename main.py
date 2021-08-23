@@ -49,7 +49,7 @@ else:
     save_path = args.save_path
 
 
-now = datetime.strftime(datetime.now(), "%Y/%m/%d %H:%M:%S")
+now = datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
 
 # 크롤링 시작
 arca = ArcaScrapper(args.parser)
@@ -62,6 +62,9 @@ total_comments = sum(len(d["comments"]) for d in data)
 json_data = {
     "channel": args.channel,
     "category": args.category if args.category is not None else "전체",
+    "best_only": args.best,
+    "start_page": args.start,
+    "end_page": args.end,
     "scrapped_time": now,
     "total_data": total_data,
     "total_comments": total_comments,

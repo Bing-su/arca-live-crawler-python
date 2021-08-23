@@ -83,11 +83,17 @@ class ArcaScrapper:
         response = requests.get(url)
         soup = BeautifulSoup(response.text, self.parser)
 
-        # 제목
+        # 제목, 카테고리
         article_head = soup.find("div", class_="article-head")
         title_texts = article_head.find("div", class_="title").find_all(text=True)
         title = title_texts[-1].strip()
         category = title_texts[-2].strip()
+
+        # 작성 시간
+        utc_time_str = article_head.find("time").get_text(strip=True)
+        utc_time = time.strptime(utc_time_str, "%Y-%m-%d %H:%M:%S")
+        ts = time.mktime(utc_time) + 32400
+        kst_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
         # 본문
         article_content = soup.find("div", class_="fr-view article-content")
@@ -105,6 +111,7 @@ class ArcaScrapper:
             "id": self.get_post_id(post_url),
             "title": title,
             "category": category,
+            "time": kst_time,
             "contents": contents,
             "comments": comments,
         }
