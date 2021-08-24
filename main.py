@@ -27,6 +27,9 @@ parser.add_argument(
     default="html.parser",
     help='사용할 파서의 종류, 기본값="html.parser"',
 )
+parser.add_argument(
+    "-w", "--workers", type=int, help="ThreadPoolExecutor가 사용할 max_workers 수"
+)
 
 args = parser.parse_args()
 
@@ -52,7 +55,7 @@ else:
 now = datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S")
 
 # 크롤링 시작
-arca = ArcaScrapper(args.parser)
+arca = ArcaScrapper(args.parser, args.workers)
 data = arca.get_page_contents_start_to_end(
     args.channel, args.start, args.end, args.best, args.category
 )

@@ -41,6 +41,7 @@
 `-n, --file_name "파일 이름"` (옵션) 크롤링한 데이터를 저장할 파일 이름.  
 `-s, --save_path "경로"` (옵션) 파일을 저장할 경로. 기본적으로 현재 위치에 data폴더를 만들어 저장합니다.  
 `-p, --parser "파서 이름"` (옵션) beautifulsoup4가 사용할 파서의 이름, 기본값="html.parser"  
+`-w, --workers 숫자` (옵션) 멀티스레딩에 사용할 max_workers 수  
 
 ## 요구사항
 `requests`  
