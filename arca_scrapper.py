@@ -45,6 +45,7 @@ class ArcaScrapper:
             data = list(
                 executor.map(get_post_contents_and_sleep, urls, [pbar] * len(urls))
             )
+            pbar.close()
 
         return data
 
@@ -97,7 +98,6 @@ class ArcaScrapper:
         "해당 게시물의 제목과 본문, 댓글들을 찾아 반환하는 함수"
 
         url = self.ARCA_URL + post_url
-        page_num = self.get_comment_page_nums(post_url)
 
         response = requests.get(url)
         soup = BeautifulSoup(response.text, self.parser)
@@ -122,6 +122,7 @@ class ArcaScrapper:
         contents = "\n".join(contents).replace("\xa0", " ").strip()
 
         # 댓글
+        page_num = self.get_comment_page_nums(post_url)
         comments = []
         for page in range(1, page_num + 1):
             comments += self.get_post_comments(post_url, page)

@@ -2,9 +2,6 @@ import argparse
 from datetime import datetime
 import json
 import os
-import time
-
-from tqdm.auto import tqdm, trange
 
 from arca_scrapper import ArcaScrapper
 
